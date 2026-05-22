@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "GIGG ARGENTGG Integration",
+    "_postman_id": "f22bfd8f-b53e-4a5c-98e6-35f929f767ea",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Importar Clientes",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/importar/clientes?last_sync={{last_sync}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "importar",
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "last_sync",
+              "value": "{{last_sync}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Webhook ARGENTGG",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Signature",
+            "value": "{{signature}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"event_type\": \"presupuesto.updated\",\n  \"id\": \"PRES-123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/webhooks/argentgg",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "webhooks",
+            "argentgg"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://gigg.com"
+    },
+    {
+      "key": "last_sync",
+      "value": "2026-05-22T00:00:00Z"
+    },
+    {
+      "key": "signature",
+      "value": ""
+    }
+  ]
+}

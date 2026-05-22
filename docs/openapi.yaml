@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: GIGG ARGENTGG Integration API
+  version: 1.0.0
+servers:
+  - url: https://gigg.com
+paths:
+  /api/v1/estoque:
+    get:
+      summary: Consulta saldo de estoque
+      parameters:
+        - in: query
+          name: produto_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Saldo encontrado
+  /api/v1/presupuestos/{id}/status:
+    post:
+      summary: Atualiza status do presupuesto
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [aprovado, rejeitado]
+      responses:
+        '200':
+          description: Status atualizado
+  /api/v1/webhooks/argentgg:
+    post:
+      summary: Recebe webhook de mudanças do ARGENTGG
+      responses:
+        '202':
+          description: Evento enfileirado
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+security:
+  - ApiKeyAuth: []
