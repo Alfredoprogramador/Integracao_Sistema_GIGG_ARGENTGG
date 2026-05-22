@@ -1,0 +1,26 @@
+{
+  "name": "gigg/argentgg-integration",
+  "description": "Gateway de integração GIGG ⇄ ARGENTGG",
+  "type": "project",
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/guzzle": "^7.9.2",
+    "monolog/monolog": "^3.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5.62"
+  },
+  "autoload": {
+    "psr-4": {
+      "GiggArgentgg\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GiggArgentgg\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit --colors=always"
+  }
+}
